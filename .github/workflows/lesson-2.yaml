@@ -39,5 +39,5 @@ jobs:
       - name: Run tests
         run: |
           coverage run -m --source=./hangry_api.tests pytest
-          cobverage report
+          coverage report
         working-directory: backend
