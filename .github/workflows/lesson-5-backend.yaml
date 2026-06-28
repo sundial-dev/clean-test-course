@@ -12,7 +12,13 @@ jobs:
         working-directory: backend
     name: Pycharm Security Tests
     steps:
-      - uses: tonybaloney/pycharm-security@1.25.1
+      - uses: actions/checkout@v4
+      - name: disable debug
+        run: |
+          sed -i 's/DEBUG = True/DEBUG = False/g' \
+          hangry_api/hangry_api/settings.py
+      - name: Execute Pycharm Security Tests
+        uses: tonybaloney/pycharm-security@1.25.1
   build_and_test:
     needs: [security_test]
     runs-on: ubuntu-latest
